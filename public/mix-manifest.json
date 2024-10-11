@@ -1,0 +1,10 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/assets/skills/app.js": "/js/assets/skills/app.js",
+    "/js/assets/admin/courses/app.js": "/js/assets/admin/courses/app.js",
+    "/js/assets/admin/lessons/app.js": "/js/assets/admin/lessons/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/assets/courses.css": "/css/assets/courses.css",
+    "/css/assets/home.css": "/css/assets/home.css",
+    "/css/assets/dashboard.css": "/css/assets/dashboard.css"
+}

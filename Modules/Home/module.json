@@ -1,0 +1,12 @@
+{
+    "name": "Home",
+    "alias": "home",
+    "description": "",
+    "status": true,
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Home\\App\\Providers\\HomeServiceProvider"
+    ],
+    "files": []
+}

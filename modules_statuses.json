@@ -1,0 +1,8 @@
+{
+    "Home": true,
+    "Dashboard": true,
+    "Courses": true,
+    "Users": true,
+    "Skills": true,
+    "Lessons": true
+}
