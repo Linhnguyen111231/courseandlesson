@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Courses\App\Models\Course;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home::index');
+        $courses = Course::all();
+        return view('home::index', compact('courses'));
     }
 
     /**
@@ -36,9 +38,10 @@ class HomeController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show($slug)
     {
-        return view('home::show');
+        $course = Course::where('slug', $slug)->firstOrFail();
+        return view('home::show', compact('course'));
     }
 
     /**

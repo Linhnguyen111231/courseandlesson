@@ -10,7 +10,7 @@
                 <button id="prevBtn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full">
                   &larr;
                 </button>
-              
+               
                 <!-- Container chứa các thẻ -->
                 <div id="slider" class="flex transition-transform duration-500">
                   <!-- Thẻ 1 -->
@@ -53,71 +53,23 @@
         <h1 class="space-x-2 text-[24px] font-bold tracking-wider">Khóa Học</h1>
     </div>
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
+      @foreach ($courses as $course)
         <div class="col-span-1 rounded-lg shadow-md  mx-[10px]">
-            <a href="#" class="  ">
-                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png" alt="">
-                <div class="body-content p-3">
-                    <h3 class="text-[18px] medium-bold tracking-wider">Title</h3>
-                    <h4 class="mt-2 text-[14px]">Price: <span>100000</span></h4>
-                    <div class="induct mt-[6px] flex justify-between">
-                        <span class=" text-bold text-[12px]">Son Dang</span>
-                        <span class="text-[12px]"><i class="fa-regular fa-clock"></i> 110:10:02</span>
-                    </div>
-                </div>
-            </a>
+                   
+          <a href="{{route('course.show', $course->slug)}}" class="  ">
+              <img style="height: 170px; width: 100%; object-fit: cover" src="{{$course->image_url}}" alt="">
+              <div class="body-content p-3">
+                  <h3 class="text-[18px] medium-bold tracking-wider">{{$course->title}}</h3>
+                  <h4 class="mt-2 text-[14px]">Price: <span>{{{$course->price}}}</span></h4>
+                  <div class="induct mt-[6px] flex justify-between">
+                      <span class=" text-bold text-[12px]">{{$course->tags}}</span>
+                      <span class="text-[12px]"><i class="fa-regular fa-clock"></i> {{$course->duration}}</span>
+                  </div>
+              </div>
+          </a>
         </div>
-        <div class="col-span-1 rounded-lg shadow-md  mx-[10px]">
-            <a href="#" class="  ">
-                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png" alt="">
-                <div class="body-content p-3">
-                    <h3 class="text-[18px] medium-bold">Title</h3>
-                    <h4 class="mt-2 text-[14px]">Price: <span>100000</span></h4>
-                    <div class="induct mt-[6px] flex justify-between">
-                        <span class=" text-bold text-[12px]">Son Dang</span>
-                        <span class="text-[12px]"><i class="fa-regular fa-clock"></i> 110:10:02</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-span-1 rounded-lg shadow-md  mx-[10px]">
-            <a href="#" class="  ">
-                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png" alt="">
-                <div class="body-content p-3">
-                    <h3 class="text-[18px] medium-bold">Title</h3>
-                    <h4 class="mt-2 text-[14px]">Price: <span>100000</span></h4>
-                    <div class="induct mt-[6px] flex justify-between">
-                        <span class=" text-bold text-[12px]">Son Dang</span>
-                        <span class="text-[12px]"><i class="fa-regular fa-clock"></i> 110:10:02</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-span-1 rounded-lg shadow-md  mx-[10px]">
-            <a href="#" class="  ">
-                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png" alt="">
-                <div class="body-content p-3">
-                    <h3 class="text-[18px] medium-bold">Title</h3>
-                    <h4 class="mt-2 text-[14px]">Price: <span>100000</span></h4>
-                    <div class="induct mt-[6px] flex justify-between">
-                        <span class=" text-bold text-[12px]">Son Dang</span>
-                        <span class="text-[12px]"><i class="fa-regular fa-clock"></i> 110:10:02</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-span-1 rounded-lg shadow-md  mx-[10px]">
-            <a href="#" class="  ">
-                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png" alt="">
-                <div class="body-content p-3">
-                    <h3 class="text-[18px] medium-bold">Title</h3>
-                    <h4 class="mt-2 text-[14px]">Price: <span>100000</span></h4>
-                    <div class="induct mt-[6px] flex justify-between">
-                        <span class=" text-bold text-[12px]">Son Dang</span>
-                        <span class="text-[12px]"><i class="fa-regular fa-clock"></i> 110:10:02</span>
-                    </div>
-                </div>
-            </a>
-        </div>
+        @endforeach
+        
     </div>
     <style>
         .background-image-gradient {
