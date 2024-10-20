@@ -16,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/register',[AuthController::class,'pageRegister']);
 Route::post('/login',[AuthController::class,  'login']);
-Route::get('/login',[AuthController::class,  'pageLogin']);
-Route::prefix('admin')->middleware('check.auth')->group(function () {
-    Route::get('dashboard',function () {
-         return 2;
-    }); 
- });
-Route::get('/', function () {
-    return 1;
-});
+Route::get('/login',action: [AuthController::class,  'pageLogin']);
+Route::prefix('/')->middleware('check.auth')->group(function () {
+     Route::get('/',function () {
+          return '/';
+          });
+     Route::get('course/{slug}',function () {
+          return 2;
+     }); 
+  });
+// Route::prefix('admin')->middleware(['check.auth', 'admin'])->group(function () {
+//     Route::get('dashboard',function () {
+//          return 2;
+//     }); 
+//  });

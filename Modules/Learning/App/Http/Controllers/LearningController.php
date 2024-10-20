@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Home\App\Http\Controllers;
+namespace Modules\Learning\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -8,15 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Courses\App\Models\Course;
 
-class HomeController extends Controller
+class LearningController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::all();
-        return view('home::index', compact('courses'));
+        return view('learning::index');
     }
 
     /**
@@ -24,7 +23,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('home::create');
+        return view('learning::create');
     }
 
     /**
@@ -41,7 +40,7 @@ class HomeController extends Controller
     public function show($slug)
     {
         $course = Course::with('lessons')->where('slug', $slug)->firstOrFail();
-        return view('home::show', compact('course'));
+        return view('learning::show', compact('course'));
     }
 
     /**
@@ -49,7 +48,7 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        return view('home::edit');
+        return view('learning::edit');
     }
 
     /**

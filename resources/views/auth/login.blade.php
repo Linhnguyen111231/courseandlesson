@@ -134,8 +134,10 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        console.log(data);
                         if (data.success) {
+                            document.cookie = `token=${data.access_token}; path=/; SameSite=None; Secure; max-age=3600;`;
+                            console.log(data.redirect);
+                            
                             window.location.href = data.redirect
                         } else {
                             $('#errorAccount').text(data.error)

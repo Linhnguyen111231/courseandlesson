@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Dashboard\App\Http\Controllers\DashboardController;
+use Modules\Learning\App\Http\Controllers\LearningController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +13,8 @@ use Modules\Dashboard\App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('admin')->middleware(['check.auth', 'admin'])->group(function () {
-    
-    Route::resource('dashboard', DashboardController::class)->names('dashboard');
- });
+// Route::get('/learning/{slug}', [LearningController::class, 'show'])->name('learning.show');
+
+Route::group([], function () {
+    Route::resource('learning', LearningController::class)->names('learning');
+});

@@ -4,5 +4,6 @@
     "Courses": true,
     "Users": true,
     "Skills": true,
-    "Lessons": true
+    "Lessons": true,
+    "Learning": true
 }

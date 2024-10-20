@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\Courses\App\Http\Controllers\CoursesController;
 
 /*
     |--------------------------------------------------------------------------
@@ -15,6 +14,6 @@ use Modules\Courses\App\Http\Controllers\CoursesController;
     |
 */
 
-Route::post('/search/courses',[CoursesController::class,'search'])->withoutMiddleware([\Tymon\JWTAuth\Http\Middleware\Authenticate::class]);;
-Route::post('/create/course',[CoursesController::class,'store']);
-
+Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
+    Route::get('learning', fn (Request $request) => $request->user())->name('learning');
+});

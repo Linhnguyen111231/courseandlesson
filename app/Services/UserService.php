@@ -48,7 +48,7 @@ class UserService
             $user = Auth::user();
 
             // Kiểm tra vai trò của người dùng
-            $redirectUrl = $user->rule->rules === 1 ? '/admin/dashboard' : '/dashboard';
+            $redirectUrl = $user->rule->rules === 1 ? '/admin/dashboard' : '/';
             return $this->createNewToken($token, $redirectUrl);
             
         } catch (\Throwable $th) {
@@ -71,7 +71,7 @@ class UserService
             $user = Auth::user();
 
             // Kiểm tra vai trò của người dùng
-            $redirectUrl = $user->rule->rules === 1 ? '/admin/dashboard' : '/dashboard';
+            $redirectUrl = $user->rule->rules === 1 ? '/admin/dashboard' : '/';
             return $this->createNewToken($token,  $redirectUrl);
 
 

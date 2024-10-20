@@ -17,5 +17,5 @@ Route::get('/course/{slug}', [HomeController::class, 'show'])->name('course.show
 
 
 Route::group([], function () {
-    Route::resource('home', HomeController::class)->names('home');
+    Route::resource('/', HomeController::class)->names('home');
 });

@@ -13,8 +13,11 @@ use Modules\Courses\App\Http\Controllers\CoursesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('admin')->middleware(['check.auth', 'admin'])->group(function () {
+    
+    Route::resource('courses', CoursesController::class)->names('courses');
+ });
 Route::post('/create/course',[CoursesController::class,'store']);
 
 Route::group([], function () {
-    Route::resource('courses', CoursesController::class)->names('courses');
 });

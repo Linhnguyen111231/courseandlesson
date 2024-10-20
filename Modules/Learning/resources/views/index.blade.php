@@ -5,6 +5,19 @@
     <div class="pt-10 px-10">
         <div class="grid grid-cols-4">
             <div class="col-span-3">
+                <div class="p-3">
+                    <video controls class="w-full h-[320px]">
+                        <source src="{{$course->video_url}}">
+                    </video>
+                    <div class=" flex-col mt-3">
+                        {!!$course->description!!}
+
+                        <div class="mt-2">Tổng giờ học: {{$course->duration}}</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-1">
                 <h1 class="text-[40px] font-bold mb-5">{{$course->title}}</h1>
            
                    {!!$course->description!!}
@@ -18,19 +31,7 @@
                   </ul>
                 </div>
             </div>
-            <div class="col-span-1">
-                <div class="p-3">
-                    <video controls class="w-full h-[120px]">
-                        <source src="{{$course->video_url}}">
-                    </video>
-                    <div class="flex justify-center items-center flex-col mt-3">
-                        <div class="mt-2">{{$course->title}}</div>
-                        <div class="mt-2">Tổng giờ học: {{$course->duration}}</div>
-                        <button class="mt-2 bg-[#4CAF50] hover:bg-[#3e8e5] text-white font-bold py-2 px-4 rounded">Học Ngay</button>
-
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 @endsection

@@ -18,30 +18,41 @@ class CheckAuthenticatedUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Lấy token từ header
-        $token = $request->header('Authorization');
 
+        // Lấy token từ header
+        $token = null;
+        if ($request->header('Authorization')) {
+            $token =  $request->header('Authorization');
+        }else{
+            
+            $cookieWeb = $request->headers->get('cookie');
+            $decay = explode('; ', $cookieWeb);
+            foreach($decay as $item){
+                if(strpos($item,'token=') === 0){
+
+                    $token = substr($item,strlen('token='));
+                }
+
+            }
+        }
         if (!$token) {
             return response()->json(['message' => 'Token not provided'], 401);
         }
 
-        // Xử lý token
-        $token = str_replace('Bearer ', '', $token); // Loại bỏ "Bearer " nếu có
+        $token = str_replace('Bearer ', '', $token); 
 
         try {
-            // Xác thực và lấy thông tin người dùng
             $user = JWTAuth::setToken($token)->authenticate();
 
             if (!$user) {
                 return response()->json(['message' => 'Token is invalid'], 401);
             }
 
-            // Đặt người dùng vào Auth
             Auth::setUser($user);
 
-            // Kiểm tra quyền của người dùng (ví dụ: kiểm tra rule)
             if ($user->rule->rules != 1) {
-                return response()->json(['message' => 'Unauthorized'], 403);
+                return $next($request);
+
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'Token processing error'], 401);
