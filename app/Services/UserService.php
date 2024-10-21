@@ -68,6 +68,8 @@ class UserService
             if (! $token = JWTAuth::attempt($request->all())) {
                 return ['success'=>false,'error' => 'Tài khoản hoặc mật khẩu không chính xác!'];
             }
+            Auth::setUser( JWTAuth::setToken($token)->authenticate());
+
             $user = Auth::user();
 
             // Kiểm tra vai trò của người dùng

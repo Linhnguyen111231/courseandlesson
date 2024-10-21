@@ -18,7 +18,6 @@
                 </div>
             </div>
             <div class="col-span-1">
-            
                 <div class="mt-5">
                     <h1 class="text-[40px] font-bold">Bài học</h1>
                 <ul class="">

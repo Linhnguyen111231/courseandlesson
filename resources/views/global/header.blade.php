@@ -11,9 +11,16 @@
             <input type="text" placeholder="Tìm kiếm khóa học, bài học,..." name="search" id="">
         </div>
         <div class="flex basis-1/3 justify-end mr-7">
-
+            @if (auth()->user())
+                <a href="#" class="mr-[20px] flex justify-center items-center">
+                    <img class="w-[36px] h-[36px] rounded-full mr-[10px]" src="https://fullstack.edu.vn/assets/f8-icon-lV2rGpF0.png" alt="">
+                    <span class="font-bold">{{auth()->user()->name}}</span>
+                </a>
+            @else
+                
             <button class="mr-2">Đăng ký</button>
             <button class="btn rounded-full text-[#fff] bg-[#ff8f26] px-[20px] py-[9px]">Đăng nhập</button>
+            @endif
         </div>
     </div>
 </header>

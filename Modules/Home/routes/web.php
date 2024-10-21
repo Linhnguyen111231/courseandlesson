@@ -13,8 +13,11 @@ use Modules\Home\App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/course/{slug}', [HomeController::class, 'show'])->name('course.show');
+Route::prefix('/')->middleware(['check.auth'])->group(function () {
+    Route::get('/course/{slug}', [HomeController::class, 'show'])->name('course.show');
+ });
 
+//  Route::get('/course/{slug}', [HomeController::class, 'show'])->name('course.show');
 
 Route::group([], function () {
     Route::resource('/', HomeController::class)->names('home');
