@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Courses\App\Models\Course;
+use Modules\Lessons\App\Models\Lesson;
 
 class LearningController extends Controller
 {
@@ -39,8 +40,12 @@ class LearningController extends Controller
      */
     public function show($slug)
     {
-        $course = Course::with('lessons')->where('slug', $slug)->firstOrFail();
-        return view('learning::show', compact('course'));
+        $slugLesson = request('lesson');
+        $course = Course::with(['lessons'=> function ($query) {
+            $query->select('title', 'duration','slug','course_id');
+        }])->where('slug', $slug)->firstOrFail();
+        $lesson = Lesson::where('slug', $slugLesson)->firstOrFail();
+        return view('learning::show', compact('course', 'lesson'));
     }
 
     /**

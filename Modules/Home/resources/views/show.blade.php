@@ -26,7 +26,7 @@
                     <div class="flex justify-center items-center flex-col mt-3">
                         <div class="mt-2">{{$course->title}}</div>
                         <div class="mt-2">Tổng giờ học: {{$course->duration}}</div>
-                        <button class="mt-2 bg-[#4CAF50] hover:bg-[#3e8e5] text-white font-bold py-2 px-4 rounded">Học Ngay</button>
+                        <a href="{{route('learning.show',$course->slug)}}?lesson={{$course->lessons[0]->slug}}" class="mt-2 bg-[#4CAF50] hover:bg-[#3e8e5] text-white font-bold py-2 px-4 rounded">Học Ngay</a>
 
                     </div>
                 </div>

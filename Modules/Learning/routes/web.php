@@ -15,6 +15,9 @@ use Modules\Learning\App\Http\Controllers\LearningController;
 */
 // Route::get('/learning/{slug}', [LearningController::class, 'show'])->name('learning.show');
 
-Route::group([], function () {
-    Route::resource('learning', LearningController::class)->names('learning');
-});
+Route::prefix('learning')->middleware(['check.auth'])->group(function () {
+    Route::get('/{slug}', [LearningController::class, 'show'])->name('learning.show');
+ });
+
+
+
