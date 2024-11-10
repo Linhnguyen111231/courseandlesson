@@ -24,3 +24,24 @@
         </div>
     </div>
 </header>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function getCookie(name) {
+    let cookieValue = document.cookie
+        .split('; ')
+        .find(row => row.startsWith(name + '='))
+        ?.split('=')[1];
+    return cookieValue ? decodeURIComponent(cookieValue) : null;
+    }
+    $.ajax({
+        method:'GET',
+        url: "/get-profile",
+        headers: {
+            Authorization: 'Bearer ' + getCookie("token") 
+        },
+        success: function(data){
+            console.log(data);
+        }
+
+    })
+</script>

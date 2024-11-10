@@ -7,6 +7,7 @@ use App\Models\Rule;
 use App\Models\User;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
@@ -68,9 +69,9 @@ class UserService
             if (! $token = JWTAuth::attempt($request->all())) {
                 return ['success'=>false,'error' => 'Tài khoản hoặc mật khẩu không chính xác!'];
             }
-            Auth::setUser( JWTAuth::setToken($token)->authenticate());
 
             $user = Auth::user();
+            Redis::set('user_'.$token,  $user->name);
 
             // Kiểm tra vai trò của người dùng
             $redirectUrl = $user->rule->rules === 1 ? '/admin/dashboard' : '/';
@@ -83,6 +84,16 @@ class UserService
                 'message' => 'Xảy ra lỗi.'
              ];
         }
+    }
+
+    public function getProfile($request) {
+        $authorizationHeader = $request->header('Authorization');
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+        $user = Redis::get('user_'.$token);
+        return [
+            'status'=>200,
+            'user'=> $user
+        ];
     }
 
     public function logout()

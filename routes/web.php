@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/register',[AuthController::class,'pageRegister']);
 Route::post('/login',[AuthController::class,  'login']);
-Route::get('/login',action: [AuthController::class,  'pageLogin']);
+Route::get('/login', [AuthController::class,  'pageLogin']);
+Route::get('/get-profile', [AuthController::class,  'getProfile']);
 Route::prefix('/')->middleware('check.auth')->group(function () {
      Route::get('/',function () {
           return '/';
